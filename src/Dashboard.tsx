@@ -1,8 +1,14 @@
-import { useUser } from "./UserList";
+import { useUser } from "./UseUser";
 
 const Dashboard = () => {
   const { user } = useUser();
-  return <h2>Welcome to your dashboard, {user}!</h2>;
+
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <p>Welcome to your dashboard, {user}!</p>
+    </div>
+  );
 };
 
 export default Dashboard;

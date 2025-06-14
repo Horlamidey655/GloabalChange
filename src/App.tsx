@@ -4,13 +4,15 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { UserProvider, useUser } from "./UserList";
-import Navbar from "./Navbar";
+import { UserProvider } from "./UserProvider";
+import { useUser } from "./UseUser";
+
 import LoginPage from "./LoginPage";
 import Dashboard from "./Dashboard";
+import Navbar from "./Navbar";
 import type { ReactNode } from "react";
 
-const PrivateRoute = ({ children }: { children: ReactNode }) => {
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const { user } = useUser();
   return user ? children : <Navigate to="/login" />;
 };
@@ -25,9 +27,9 @@ const App = () => {
           <Route
             path="/dashboard"
             element={
-              <PrivateRoute>
+              <ProtectedRoute>
                 <Dashboard />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           />
           <Route path="*" element={<Navigate to="/login" />} />

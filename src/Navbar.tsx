@@ -1,21 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "./UserList";
+import { Link } from "react-router-dom";
+import { useUser } from "./UseUser";
 
 const Navbar = () => {
   const { user, logout } = useUser();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
 
   return (
-    <nav className="nav">
+    <nav>
       {user ? (
         <>
-          <span>Welcome, {user}</span> |{" "}
-          <button onClick={handleLogout}>Logout</button>
+          <span>Welcome, {user}</span>
+          <button onClick={logout} style={{ marginLeft: "1rem" }}>
+            Logout
+          </button>
         </>
       ) : (
         <Link to="/login">Login</Link>
